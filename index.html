@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Frontier Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Special+Elite&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#e8dcc0;
+    --ink:#3a2a18;
+    --ink-soft:#6b5638;
+    --leather:#2b1d12;
+    --leather-2:#4a3320;
+    --red:#7a2323;
+    --red-hover:#94302e;
+    --gold:#a8791f;
+    --gold-bright:#c9962f;
+    --font-display:'Rye',Georgia,serif;
+    --font-body:'Special Elite','Courier New',monospace;
+    --font-caps:'IM Fell English SC',Georgia,serif;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    min-height:100vh;
+    font-family:var(--font-body);
+    color:var(--ink);
+    padding:60px 20px 80px;
+    background-color:var(--paper);
+    background-image:
+      radial-gradient(ellipse at 18% 22%, rgba(120,85,45,0.16), transparent 55%),
+      radial-gradient(ellipse at 82% 15%, rgba(100,70,35,0.14), transparent 50%),
+      radial-gradient(ellipse at 75% 85%, rgba(110,80,40,0.16), transparent 55%),
+      radial-gradient(ellipse at 10% 90%, rgba(90,60,30,0.12), transparent 50%),
+      url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.22  0 0 0 0 0.16  0 0 0 0 0.08  0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    position:relative;
+  }
+  body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:radial-gradient(ellipse at center, transparent 45%, rgba(25,15,8,0.35) 100%);
+  }
+
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    position:relative;
+    z-index:1;
+  }
+
+  .badge{
+    display:block;
+    margin:0 auto 22px;
+    width:96px;
+    height:96px;
+  }
+
+  .title{
+    text-align:center;
+    font-family:var(--font-display);
+    font-size:48px;
+    letter-spacing:2px;
+    color:var(--ink);
+    margin:0;
+    text-shadow:1px 1px 0 rgba(255,255,255,0.25), 2px 2px 3px rgba(58,42,24,0.3);
+  }
+  .title span{color:var(--red);}
+  .tagline{
+    text-align:center;
+    font-family:var(--font-caps);
+    font-size:16px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+
+  .divider{
+    margin:24px auto 40px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    color:var(--gold);
+  }
+  .divider .line{
+    flex:1;
+    height:2px;
+    background:linear-gradient(90deg, transparent, var(--ink-soft) 15%, var(--ink-soft) 85%, transparent);
+    opacity:0.55;
+  }
+  .divider .mark{font-size:18px;}
+
+  .panel{
+    background:linear-gradient(180deg, rgba(255,252,240,0.55), rgba(232,216,178,0.35));
+    border:2px solid var(--leather-2);
+    box-shadow:
+      0 0 0 5px var(--paper),
+      0 0 0 6px var(--leather-2),
+      inset 0 0 40px rgba(90,60,30,0.18),
+      0 6px 14px rgba(30,18,8,0.25);
+    border-radius:2px;
+    padding:26px 28px 28px;
+    position:relative;
+    margin-bottom:26px;
+  }
+  .panel::before{
+    content:attr(data-tag);
+    position:absolute;
+    top:-16px;
+    left:24px;
+    background:var(--leather);
+    color:var(--gold-bright);
+    padding:4px 14px;
+    font-family:var(--font-caps);
+    font-size:13px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    border:1px solid var(--gold);
+    box-shadow:0 3px 6px rgba(0,0,0,0.35);
+  }
+
+  h2{
+    font-family:var(--font-display);
+    font-weight:400;
+    font-size:22px;
+    margin:8px 0 14px;
+    color:var(--red);
+  }
+  p{
+    font-size:15px;
+    line-height:1.7;
+    color:var(--ink);
+  }
+  ul{
+    font-size:15px;
+    line-height:1.8;
+    padding-left:22px;
+  }
+  ul li b{color:var(--red);}
+
+  .links{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-top:8px;
+  }
+  .btn{
+    display:inline-block;
+    font-family:var(--font-caps);
+    font-size:14px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    text-decoration:none;
+    border:1px solid var(--ink-soft);
+    background:rgba(255,251,240,0.4);
+    color:var(--ink);
+    padding:10px 20px;
+    border-radius:2px;
+    transition:all .15s ease;
+  }
+  .btn:hover{ border-color:var(--red); color:var(--red); }
+  .btn.primary{
+    background:var(--red);
+    color:var(--paper);
+    border-color:var(--leather);
+  }
+  .btn.primary:hover{ background:var(--red-hover); color:#fff; }
+
+  footer{
+    text-align:center;
+    margin-top:40px;
+    font-family:var(--font-caps);
+    font-size:12px;
+    letter-spacing:1.5px;
+    color:var(--ink-soft);
+    opacity:0.8;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <svg class="badge" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="64" cy="64" r="60" fill="#2b1d12"/>
+    <circle cx="64" cy="64" r="56" fill="none" stroke="#a8791f" stroke-width="4"/>
+    <circle cx="64" cy="64" r="47" fill="none" stroke="#785418" stroke-width="2"/>
+    <circle cx="64" cy="64" r="44" fill="#7a2323"/>
+    <polygon points="64,26 73,50 99,50 78,65 86,89 64,74 42,89 50,65 29,50 55,50"
+             fill="#d8a84a" stroke="#785418" stroke-width="1.5"/>
+    <circle cx="64" cy="64" r="4" fill="#785418"/>
+  </svg>
+
+  <h1 class="title">FRONTIER <span>LEDGER</span></h1>
+  <div class="tagline">A Reckoning of Goods &amp; Supplies</div>
+
+  <div class="divider"><div class="line"></div><div class="mark">✦</div><div class="line"></div></div>
+
+  <div class="panel" data-tag="About">
+    <h2>What is this?</h2>
+    <p>
+      Frontier Ledger is a browser extension built for a small roleplay
+      community to record crafting recipes and work out exactly what's
+      needed to make more of anything — down to the raw materials, no
+      matter how many steps of crafting stand in between.
+    </p>
+    <ul>
+      <li><b>Record</b> what any item takes to craft, including how much a single craft produces</li>
+      <li><b>Chain</b> recipes together — a good can call on another recorded good as one of its own supplies</li>
+      <li><b>Reckon up</b> several different goods at once and get one combined shopping list of raw materials</li>
+      <li><b>Shared</b> in real time with everyone else in the community using the extension</li>
+    </ul>
+  </div>
+
+  <div class="panel" data-tag="Legal">
+    <h2>Policies</h2>
+    <p>These apply to anyone using the Frontier Ledger extension.</p>
+    <div class="links">
+      <a class="btn primary" href="privacy-policy.html">Privacy Policy</a>
+      <a class="btn" href="terms-of-use.html">Terms of Use</a>
+    </div>
+  </div>
+
+  <footer>Frontier Ledger — a community-built tool, not affiliated with any game or platform</footer>
+
+</div>
+
+</body>
+</html>
