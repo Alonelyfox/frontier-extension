@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Frontier Ledger — Changelog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Special+Elite&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#e8dcc0;
+    --ink:#3a2a18;
+    --ink-soft:#6b5638;
+    --leather:#2b1d12;
+    --leather-2:#4a3320;
+    --red:#7a2323;
+    --red-hover:#94302e;
+    --gold:#a8791f;
+    --gold-bright:#c9962f;
+    --font-display:'Rye',Georgia,serif;
+    --font-body:'Special Elite','Courier New',monospace;
+    --font-caps:'IM Fell English SC',Georgia,serif;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    min-height:100vh;
+    font-family:var(--font-body);
+    color:var(--ink);
+    padding:60px 20px 80px;
+    background-color:var(--paper);
+    background-image:
+      radial-gradient(ellipse at 18% 22%, rgba(120,85,45,0.16), transparent 55%),
+      radial-gradient(ellipse at 82% 15%, rgba(100,70,35,0.14), transparent 50%),
+      radial-gradient(ellipse at 75% 85%, rgba(110,80,40,0.16), transparent 55%),
+      radial-gradient(ellipse at 10% 90%, rgba(90,60,30,0.12), transparent 50%),
+      url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.22  0 0 0 0 0.16  0 0 0 0 0.08  0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    position:relative;
+  }
+  body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:radial-gradient(ellipse at center, transparent 45%, rgba(25,15,8,0.35) 100%);
+  }
+
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    position:relative;
+    z-index:1;
+  }
+
+  .title{
+    text-align:center;
+    font-family:var(--font-display);
+    font-size:42px;
+    letter-spacing:2px;
+    color:var(--ink);
+    margin:0;
+    text-shadow:1px 1px 0 rgba(255,255,255,0.25), 2px 2px 3px rgba(58,42,24,0.3);
+  }
+  .title span{color:var(--red);}
+  .tagline{
+    text-align:center;
+    font-family:var(--font-caps);
+    font-size:16px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+  .back-link{
+    display:block;
+    text-align:center;
+    margin-top:14px;
+    font-family:var(--font-caps);
+    font-size:13px;
+    letter-spacing:1px;
+    color:var(--ink-soft);
+    text-decoration:none;
+  }
+  .back-link:hover{ color:var(--red); }
+
+  .divider{
+    margin:24px auto 40px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    color:var(--gold);
+  }
+  .divider .line{
+    flex:1;
+    height:2px;
+    background:linear-gradient(90deg, transparent, var(--ink-soft) 15%, var(--ink-soft) 85%, transparent);
+    opacity:0.55;
+  }
+  .divider .mark{font-size:18px;}
+
+  .entry{
+    background:linear-gradient(180deg, rgba(255,252,240,0.55), rgba(232,216,178,0.35));
+    border:2px solid var(--leather-2);
+    box-shadow:
+      0 0 0 5px var(--paper),
+      0 0 0 6px var(--leather-2),
+      inset 0 0 40px rgba(90,60,30,0.18),
+      0 6px 14px rgba(30,18,8,0.25);
+    border-radius:2px;
+    padding:22px 26px 24px;
+    position:relative;
+    margin-bottom:26px;
+  }
+  .entry-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:12px;
+  }
+  .version{
+    font-family:var(--font-display);
+    font-size:24px;
+    color:var(--red);
+  }
+  .kind{
+    font-family:var(--font-caps);
+    font-size:12px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--gold);
+    border:1px solid var(--gold);
+    border-radius:9px;
+    padding:2px 10px;
+  }
+  ul{
+    margin:0;
+    padding-left:22px;
+    font-size:15px;
+    line-height:1.75;
+  }
+  ul li b{color:var(--red);}
+
+  footer{
+    text-align:center;
+    margin-top:40px;
+    font-family:var(--font-caps);
+    font-size:12px;
+    letter-spacing:1.5px;
+    color:var(--ink-soft);
+    opacity:0.8;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <h1 class="title">FRONTIER <span>LEDGER</span></h1>
+  <div class="tagline">Changelog</div>
+  <a class="back-link" href="index.html">← Back to Frontier Ledger</a>
+
+  <div class="divider"><div class="line"></div><div class="mark">✦</div><div class="line"></div></div>
+
+  <div class="entry">
+    <div class="entry-head"><span class="version">v1.11.1</span><span class="kind">Fix</span></div>
+    <ul>
+      <li>Enlarged and darkened the category count numbers (e.g. <b>Blacksmith (6)</b>) and the build version tag at the bottom of the page — both were too small/faint to read comfortably.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-head"><span class="version">v1.11</span><span class="kind">Feature</span></div>
+    <ul>
+      <li>Category groups in the Recorded Goods list are now <b>collapsed by default</b>, with an item count next to each (e.g. "Tailor (4)"), so the master list is much easier to scan.</li>
+      <li>Added <b>Expand all / Collapse all</b> buttons above the list.</li>
+      <li>Which categories you have open is remembered locally in your browser while you work — it isn't synced to the shared database.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-head"><span class="version">v1.10</span><span class="kind">Feature</span></div>
+    <ul>
+      <li>Clicking <b>Edit</b> on a recorded good now brings the edit form down to sit right below that item instead of requiring a scroll back to the top of the page.</li>
+      <li>Added an "Editing: [item name]" label and a highlighted border on the form while editing.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-head"><span class="version">v1.9</span><span class="kind">Feature</span></div>
+    <ul>
+      <li>Added an optional <b>Category</b> field to each recorded good (e.g. "Tailor," "Blacksmith"), with autocomplete suggesting categories already in use.</li>
+      <li>The Recorded Goods list is grouped by category, and each card shows a small category badge.</li>
+      <li>Calculator dropdowns now show the category alongside the item name, e.g. "Cloth Roll (Tailor)."</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-head"><span class="version">v1.8</span><span class="kind">Feature</span></div>
+    <ul>
+      <li>Added an optional <b>image URL</b> field to each resource line, with a live thumbnail preview.</li>
+      <li>Typing a resource name that already has a known image elsewhere auto-fills that image.</li>
+      <li>Thumbnails now show up on recipe cards, in the calculator's breakdown tree, and in the flat raw-materials total list.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-head"><span class="version">v1.7</span><span class="kind">Fix</span></div>
+    <ul>
+      <li>Removed a leftover duplicate status indicator with hardcoded "Connecting..." text and a non-functional Refresh button that was sitting on top of the real (working) status indicator.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-head"><span class="version">v1.6</span><span class="kind">Feature</span></div>
+    <ul>
+      <li>The calculator can now queue up <b>several different goods at once</b> — "+ Add another good" adds a row, each with its own item and quantity, with a way to remove rows too.</li>
+      <li>Reckoning shows a breakdown for each good, plus one combined total raw-materials list for everything requested.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-head"><span class="version">v1.5</span><span class="kind">Feature</span></div>
+    <ul>
+      <li>Recipes can now specify how many units a single craft <b>produces</b> (e.g. 1 craft of Shell Casing makes 5).</li>
+      <li>The calculator works out how many times you'd need to craft something to cover the amount needed, and scales sub-resources by that number of batches instead of the raw requested quantity.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-head"><span class="version">v1.4</span><span class="kind">Fix</span></div>
+    <ul>
+      <li>Resource names are now matched to recorded goods regardless of capitalization or stray spacing, so a mismatched reference (like "shell casing " vs. "Shell Casing") correctly expands into its sub-requirements instead of being treated as a raw material.</li>
+      <li>Saving a good that only differs by case/spacing from an existing entry now updates that entry instead of creating a near-duplicate.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-head"><span class="version">v1.3</span><span class="kind">Fix</span></div>
+    <ul>
+      <li>Baked the Firebase project configuration directly into <code>config.js</code>, so the extension works immediately out of a fresh download without manual setup.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-head"><span class="version">v1.2</span><span class="kind">Feature</span></div>
+    <ul>
+      <li>The calculator's results now lead with the <b>crafting breakdown</b> — tagging each requirement as "craft this" or "raw material" — instead of leading with a flat raw-materials list.</li>
+      <li>The flat raw-materials list is still available, moved into a collapsed "Show total raw materials only" section.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-head"><span class="version">v1.1</span><span class="kind">Fix</span></div>
+    <ul>
+      <li>Fixed the live-sync connection getting permanently stuck on "Connecting..." after about an hour — it now re-authenticates and reconnects automatically instead of retrying forever with an expired token.</li>
+      <li>Added the build version number shown at the bottom of the page.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-head"><span class="version">v1.0</span><span class="kind">Initial release</span></div>
+    <ul>
+      <li>Frontier Ledger extension: record crafting recipes (including goods built from other recorded goods) and calculate what's needed to make more.</li>
+      <li>Clicking the toolbar icon opens the ledger in its own tab.</li>
+      <li>Data is shared in real time with everyone using the extension, backed by a Firebase Realtime Database with anonymous authentication.</li>
+    </ul>
+  </div>
+
+  <footer>Frontier Ledger — a community-built tool, not affiliated with any game or platform</footer>
+
+</div>
+
+</body>
+</html>
